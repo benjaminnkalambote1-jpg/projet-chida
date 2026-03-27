@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Boutique Casquettes Luxe</title>
+    <style>
+        /* === Style Luxe === */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #DEB887; 
+            color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #000000;
+            color: #FFFFFF;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+            position: sticky;
+            top: 0;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+            flex-wrap: wrap;
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo {
+            width: 50px;
+            height: auto;
+            margin-right: 10px;
+        }
+
+        .cart {
+            font-size: 18px;
+        }
+
+        main {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            padding: 30px;
+            gap: 20px;
+        }
+
+        .product {
+            background-color: #222;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.6);
+            padding: 20px;
+            text-align: center;
+            width: 220px;
+            transition: transform 0.3s;
+        }
+
+        .product:hover {
+            transform: translateY(-5px);
+        }
+
+        .product img {
+            width: 100%;
+            border-radius: 10px;
+        }
+
+        .product h2 {
+            color: #f5f5f5;
+            margin: 10px 0 5px;
+        }
+
+        .product p {
+            color: #ccc;
+            margin-bottom: 15px;
+        }
+
+        .add-to-cart {
+            background-color: gold;
+            color: #111;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+
+        .add-to-cart:hover {
+            background-color: #d4af37;
+            transform: scale(1.05);
+        }
+
+        .cart span {
+            font-weight: bold;
+            color: gold;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #111;
+            color: #aaa;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .icon {
+            width: 20px;
+            height: 20px;
+            vertical-align: middle;
+            margin-right: 5px;
+        }
+
+        @media (max-width: 600px) {
+            main {
+                flex-direction: column;
+                align-items: center;
+                padding: 15px;
+            }
+
+            .product {
+                width: 90%;
+            }
+
+            .logo {
+                width: 40px;
+                margin-bottom: 5px;
+            }
+
+            header {
+                justify-content: center;
+                text-align: center;
+            }
+
+            footer {
+                gap: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-left">
+            <!-- Remplace cette URL par ton logo hébergé en ligne -->
+            <img src="IMG-20260326-WA0000.jpg" alt="Logo" class="logo">
+            <h1>Chida-shop</h1>
+        </div>
+
+        <div class="cart">🛒 Panier : <span>0</span></div>
+    </header>
+
+    <main>
+        <div class="product">
+            <img src="545ae315-1475-4e28-b539-2d49853dbcc8.jpeg" alt="Casquette Rouge">
+            <h2>Casquette Rouge</h2>
+            <p>Prix : 50$</p>
+            <button class="add-to-cart">Ajouter au panier</button>
+        </div>
+
+        <div class="product">
+            <img src="1c845ff4-0233-4a2c-b409-5c89c602bdbc.jpeg" alt="Casquette Bleue">
+            <h2>Casquette Bleue</h2>
+            <p>Prix : 60$</p>
+            <button class="add-to-cart">Ajouter au panier</button>
+        </div>
+
+        <div class="product">
+            <img src="0d721aa8-1d80-47e2-93bf-c79b6da26256.jpeg" alt="Casquette Verte">
+            <h2>Casquette Verte</h2>
+            <p>Prix : 55$</p>
+            <button class="add-to-cart">Ajouter au panier</button>
+        </div>
+    </main>
+
+    <footer>
+        <p>
+            <a href="https://wa.me/243995452975" target="_blank">
+                <img src="https://logo.svgcdn.com/logos/whatsapp-icon.png" alt="WhatsApp" class="icon">
+                Contacter sur WhatsApp
+            </a>
+        </p>
+
+        <p>
+            <a href="mailto:contact@tonsite.com">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/4/4e/Mail_%28iOS%29.svg" alt="Email" class="icon">
+                Envoyer un email
+            </a>
+        </p>
+
+        <p>📧 <a href="mailto:contact@tonsite.com">contact@tonsite.com</a></p>
+        © 2026 Chida-shop
+    </footer>
+
+    <script>
+        // === JavaScript panier ===
+        let cartCount = 0;
+        const cartSpan = document.querySelector('.cart span');
+        const buttons = document.querySelectorAll('.add-to-cart');
+
+        buttons.forEach(button => {
+            button.addEventListener('click', () => {
+                cartCount++;
+                cartSpan.textContent = cartCount;
+                alert('Produit ajouté au panier !');
+            });
+        });
+    </script>
+</body>
+</html>
