@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Boutique Casquettes Luxe</title>
     <style>
-        /* === Style Luxe === */
+        /* === Style Luxe (Ton code original) === */
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background-color: #DEB887; 
@@ -25,6 +25,7 @@
             top: 0;
             box-shadow: 0 4px 10px rgba(0,0,0,0.5);
             flex-wrap: wrap;
+            z-index: 1000;
         }
 
         .header-left {
@@ -36,10 +37,20 @@
             width: 50px;
             height: auto;
             margin-right: 10px;
+            border-radius: 50%; /* Petit plus pour le logo */
         }
 
         .cart {
             font-size: 18px;
+        }
+
+        .cart span {
+            font-weight: bold;
+            color: gold;
+            border: 1px solid gold;
+            padding: 2px 8px;
+            border-radius: 50%;
+            margin-left: 5px;
         }
 
         main {
@@ -58,6 +69,7 @@
             text-align: center;
             width: 220px;
             transition: transform 0.3s;
+            overflow: hidden; /* Pour l'effet zoom propre */
         }
 
         .product:hover {
@@ -67,6 +79,11 @@
         .product img {
             width: 100%;
             border-radius: 10px;
+            transition: transform 0.5s ease;
+        }
+
+        .product:hover img {
+            transform: scale(1.05);
         }
 
         .product h2 {
@@ -95,9 +112,28 @@
             transform: scale(1.05);
         }
 
-        .cart span {
+        /* --- AJOUTS POUR WHATSAPP ET SAMSUNG A3 --- */
+        .whatsapp-sticky {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #25D366;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 50px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
             font-weight: bold;
-            color: gold;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+            z-index: 2000;
+            transition: transform 0.3s ease;
+        }
+
+        .whatsapp-sticky img {
+            width: 30px;
+            height: 30px;
         }
 
         footer {
@@ -109,6 +145,7 @@
             flex-direction: column;
             align-items: center;
             gap: 10px;
+            padding-bottom: 80px; /* Espace pour ne pas cacher par le bouton WhatsApp */
         }
 
         .icon {
@@ -118,48 +155,38 @@
             margin-right: 5px;
         }
 
+        /* Responsive spécifique Samsung A3 / Mobile */
         @media (max-width: 600px) {
             main {
-                flex-direction: column;
-                align-items: center;
                 padding: 15px;
             }
 
             .product {
-                width: 90%;
+                width: 85%;
             }
 
-            .logo {
-                width: 40px;
-                margin-bottom: 5px;
+            h1 {
+                font-size: 1.2rem;
             }
 
-            header {
-                justify-content: center;
-                text-align: center;
+            .whatsapp-sticky span {
+                display: none; /* On ne garde que l'icône sur petit écran */
             }
 
-            footer {
-                gap: 10px;
+            .whatsapp-sticky {
+                padding: 12px;
+                border-radius: 50%;
             }
         }
-
-
-
     </style>
 </head>
 <body>
 
-
-
-
     <header>
         <div class="header-left">
-            <!-- Remplace cette URL par ton logo hébergé en ligne -->
             <img src="casquette6.jpg" alt="Logo" class="logo">
             <h1>Chida-shop</h1>
         </div>
-
         <div class="cart">🛒 Panier : <span>0</span></div>
     </header>
 
@@ -186,6 +213,11 @@
         </div>
     </main>
 
+    <a href="https://wa.me/243995452975" class="whatsapp-sticky" target="_blank">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
+        <span>Discuter avec nous</span>
+    </a>
+
     <footer>
         <p>
             <a href="https://wa.me/243995452975" target="_blank">
@@ -193,28 +225,30 @@
                 Contacter sur WhatsApp
             </a>
         </p>
-
-        <p>
-            <a href="mailto:contact@tonsite.com">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/4/4e/Mail_%28iOS%29.svg" alt="Email" class="icon">
-                Envoyer un email
-            </a>
-        </p>
-
         <p>📧 <a href="mailto:contact@tonsite.com">contact@tonsite.com</a></p>
         © 2026 Chida-shop
     </footer>
 
     <script>
-        // === JavaScript panier ===
-        let cartCount = 0;
+        // === JavaScript Panier avec Sauvegarde (LocalStorage) ===
+        
+        // On charge la sauvegarde ou on met 0
+        let cartCount = localStorage.getItem('panierChida') ? parseInt(localStorage.getItem('panierChida')) : 0;
+        
         const cartSpan = document.querySelector('.cart span');
         const buttons = document.querySelectorAll('.add-to-cart');
+
+        // Affichage initial
+        cartSpan.textContent = cartCount;
 
         buttons.forEach(button => {
             button.addEventListener('click', () => {
                 cartCount++;
                 cartSpan.textContent = cartCount;
+                
+                // Sauvegarde dans la mémoire du Samsung A3
+                localStorage.setItem('panierChida', cartCount);
+                
                 alert('Produit ajouté au panier !');
             });
         });
