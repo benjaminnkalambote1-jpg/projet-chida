@@ -7,8 +7,8 @@
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
     
     <style>
-        /* === STYLE GLOBAL LUXE === */
-        body { font-family: 'Segoe UI', sans-serif; background-color: #DEB887; color: #f5f5f5; margin: 0; padding: 0; }
+        /* === STYLE GLOBAL === */
+        body { font-family: 'Segoe UI', sans-serif; background-color: #DEB887; color: #f5f5f5; margin: 0; padding: 0; overflow-x: hidden; }
         
         header { 
             background-color: #000; 
@@ -24,76 +24,79 @@
         }
 
         .header-left { display: flex; align-items: center; }
-        .logo { width: 50px; height: 50px; margin-right: 12px; border-radius: 50%; object-fit: cover; border: 1px solid gold; }
-        h1 { margin: 0; font-size: 1.4rem; letter-spacing: 1px; }
+        .logo { width: 45px; height: 45px; margin-right: 12px; border-radius: 50%; object-fit: cover; border: 1px solid gold; }
+        h1 { margin: 0; font-size: 1.2rem; letter-spacing: 1px; }
 
         .cart-info { text-align: right; line-height: 1.2; }
-        #total-display { color: gold; font-weight: bold; font-size: 1.1rem; }
-        #item-count { color: gold; border: 1px solid gold; padding: 2px 6px; border-radius: 50%; font-size: 0.9rem; }
+        #total-display { color: gold; font-weight: bold; font-size: 1rem; }
 
-        main { display: flex; flex-wrap: wrap; justify-content: center; padding: 20px; gap: 20px; }
-        
+        /* === LE SLIDER HORIZONTAL (DÉFILEMENT GAUCHE/DROITE) === */
+        .product-slider {
+            display: flex;
+            overflow-x: auto; /* Active le défilement horizontal */
+            scroll-snap-type: x mandatory; /* Aligne proprement les produits */
+            gap: 15px;
+            padding: 20px;
+            scrollbar-width: none; /* Cache la barre de défilement sur Firefox */
+        }
+
+        .product-slider::-webkit-scrollbar { display: none; } /* Cache la barre sur Chrome/Safari */
+
         .product { 
+            flex: 0 0 220px; /* Largeur fixe de chaque casquette */
+            scroll-snap-align: center;
             background-color: #222; 
             border-radius: 15px; 
-            padding: 20px; 
+            padding: 15px; 
             text-align: center; 
-            width: 200px; 
             box-shadow: 0 4px 15px rgba(0,0,0,0.5);
-            transition: 0.3s;
         }
-        .product:hover { transform: translateY(-5px); }
-        .product img { width: 100%; border-radius: 10px; margin-bottom: 10px; }
-        .price-tag { color: gold; font-weight: bold; font-size: 1.2rem; margin: 10px 0; }
 
-        .btn-add { background-color: gold; color: #000; border: none; padding: 12px; width: 100%; border-radius: 8px; font-weight: bold; cursor: pointer; transition: 0.2s; }
-        .btn-add:active { transform: scale(0.95); }
-        .btn-remove { background-color: #444; color: #ccc; border: none; padding: 6px; width: 100%; border-radius: 8px; cursor: pointer; margin-top: 8px; font-size: 0.8rem; }
+        .product img { width: 100%; border-radius: 10px; margin-bottom: 10px; height: 180px; object-fit: cover; }
+        .price-tag { color: gold; font-weight: bold; font-size: 1.1rem; margin: 5px 0; }
 
-        /* FORMULAIRE DE COMMANDE */
+        .btn-add { background-color: gold; color: #000; border: none; padding: 10px; width: 100%; border-radius: 8px; font-weight: bold; cursor: pointer; }
+        .btn-remove { background-color: #444; color: #ccc; border: none; padding: 5px; width: 100%; border-radius: 8px; cursor: pointer; margin-top: 5px; font-size: 0.7rem; }
+
+        /* FORMULAIRE */
         .order-form {
             background-color: #111;
-            padding: 25px;
+            padding: 20px;
             max-width: 450px;
-            margin: 30px auto;
+            margin: 10px auto 30px;
             border-radius: 15px;
             border: 2px solid gold;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.6);
         }
-        .order-form h3 { color: gold; text-align: center; margin-top: 0; text-transform: uppercase; font-size: 1.1rem; }
+        .order-form h3 { color: gold; text-align: center; margin-top: 0; font-size: 1rem; }
         .order-form input {
             width: 100%;
             padding: 12px;
-            margin: 8px 0;
+            margin: 6px 0;
             border-radius: 8px;
             border: 1px solid #333;
             background: #222;
             color: white;
             box-sizing: border-box;
-            font-size: 1rem;
         }
-        .order-form input:focus { border-color: gold; outline: none; }
 
         #whatsapp-btn {
             background-color: #25D366;
             color: white;
             border: none;
-            padding: 16px;
+            padding: 15px;
             width: 100%;
             border-radius: 8px;
             font-weight: bold;
-            font-size: 1.1rem;
+            font-size: 1rem;
             cursor: pointer;
-            margin-top: 15px;
+            margin-top: 10px;
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 10px;
-            transition: 0.3s;
         }
-        #whatsapp-btn:hover { background-color: #128C7E; }
 
-        footer { text-align: center; padding: 30px; color: #666; font-size: 0.8rem; background: #000; margin-top: 20px; }
+        footer { text-align: center; padding: 20px; color: #666; font-size: 0.7rem; background: #000; }
     </style>
 </head>
 <body>
@@ -104,17 +107,17 @@
             <h1>Chida-shop</h1>
         </div>
         <div class="cart-info">
-            🛒 <span id="item-count">0</span> Articles<br>
+            🛒 <span id="item-count">0</span> articles<br>
             <span id="total-display">Total : 0$</span>
         </div>
     </header>
 
-    <main>
+    <div class="product-slider">
         <div class="product" data-price="50" data-name="Casquette Rouge">
             <img src="casquette4.jpeg" alt="Rouge">
             <h3>Rouge Luxe</h3>
             <div class="price-tag">50$</div>
-            <button class="btn-add">Ajouter au panier</button>
+            <button class="btn-add">Ajouter</button>
             <button class="btn-remove">Retirer</button>
         </div>
         
@@ -122,7 +125,7 @@
             <img src="casquette3.jpeg" alt="Bleue">
             <h3>Bleue Royal</h3>
             <div class="price-tag">60$</div>
-            <button class="btn-add">Ajouter au panier</button>
+            <button class="btn-add">Ajouter</button>
             <button class="btn-remove">Retirer</button>
         </div>
 
@@ -130,122 +133,113 @@
             <img src="casquette2.jpeg" alt="Verte">
             <h3>Verte Urban</h3>
             <div class="price-tag">55$</div>
-            <button class="btn-add">Ajouter au panier</button>
+            <button class="btn-add">Ajouter</button>
             <button class="btn-remove">Retirer</button>
         </div>
-    </main>
+
+        <div class="product" data-price="45" data-name="Casquette Noire">
+            <img src="casquette4.jpeg" alt="Noire">
+            <h3>Classic Black</h3>
+            <div class="price-tag">45$</div>
+            <button class="btn-add">Ajouter</button>
+            <button class="btn-remove">Retirer</button>
+        </div>
+
+        
+         <div class="product" data-price="55" data-name="Casquette Verte">
+            <img src="casquette2.jpeg" alt="Verte">
+            <h3>Verte Urban</h3>
+            <div class="price-tag">55$</div>
+            <button class="btn-add">Ajouter</button>
+            <button class="btn-remove">Retirer</button>
+        </div>
+
+        <div class="product" data-price="45" data-name="Casquette Noire">
+            <img src="casquette4.jpeg" alt="Noire">
+            <h3>Classic Black</h3>
+            <div class="price-tag">45$</div>
+            <button class="btn-add">Ajouter</button>
+            <button class="btn-remove">Retirer</button>
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </div>
 
     <section class="order-form">
-        <h3>🚀 Détails de Livraison</h3>
+        <h3>📍 Détails de Livraison</h3>
         <input type="text" id="name" placeholder="Nom Complet" required>
-        <input type="tel" id="phone" placeholder="N° WhatsApp (Ex: 243...)" required>
-        <input type="email" id="email" placeholder="Adresse Email" required>
-        <input type="text" id="address" placeholder="Adresse (Quartier, Rue, N°)" required>
+        <input type="tel" id="phone" placeholder="N° WhatsApp" required>
+        <input type="email" id="email" placeholder="Email" required>
+        <input type="text" id="address" placeholder="Adresse complète" required>
         
         <button id="whatsapp-btn">
-            🟢 Payer via M-Pesa sur WhatsApp
+            🟢 Commander via WhatsApp
         </button>
     </section>
 
-    <footer>
-        © 2026 Chida-shop | Votre style, notre priorité.
-    </footer>
+    <footer>© 2026 Chida-shop | Kinshasa</footer>
 
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
 
     <script>
-        let count = 0;
-        let total = 0;
-        let itemsOrdered = [];
-
+        let count = 0; let total = 0; let itemsOrdered = [];
         const countLabel = document.getElementById('item-count');
         const totalLabel = document.getElementById('total-display');
 
-        // AJOUTER
         document.querySelectorAll('.btn-add').forEach(btn => {
             btn.addEventListener('click', () => {
                 const parent = btn.parentElement;
                 const price = parseInt(parent.getAttribute('data-price'));
                 const name = parent.getAttribute('data-name');
-
-                count++;
-                total += price;
-                itemsOrdered.push(name);
-                
+                count++; total += price; itemsOrdered.push(name);
                 updateUI();
-
-                // Toast Luxe Noir et Or
                 Toastify({
                     text: `✨ ${name} ajouté (+${price}$)`,
                     duration: 2000,
-                    style: { 
-                        background: "linear-gradient(to right, #000, #D4AF37)", 
-                        borderRadius: "10px",
-                        border: "1px solid gold",
-                        color: "white"
-                    }
+                    style: { background: "linear-gradient(to right, #000, #D4AF37)", borderRadius: "10px", border: "1px solid gold", color: "white" }
                 }).showToast();
             });
         });
 
-        // RETIRER
         document.querySelectorAll('.btn-remove').forEach(btn => {
             btn.addEventListener('click', () => {
                 const parent = btn.parentElement;
                 const price = parseInt(parent.getAttribute('data-price'));
                 const name = parent.getAttribute('data-name');
-
                 if (count > 0 && itemsOrdered.includes(name)) {
-                    count--;
-                    total -= price;
-                    const index = itemsOrdered.indexOf(name);
-                    itemsOrdered.splice(index, 1);
-                    
+                    count--; total -= price;
+                    itemsOrdered.splice(itemsOrdered.indexOf(name), 1);
                     updateUI();
-
-                    Toastify({
-                        text: `❌ ${name} retiré`,
-                        duration: 2000,
-                        style: { background: "#444", borderRadius: "10px" }
-                    }).showToast();
+                    Toastify({ text: `❌ ${name} retiré`, duration: 2000, style: { background: "#444", borderRadius: "10px" } }).showToast();
                 }
             });
         });
 
-        function updateUI() {
-            countLabel.textContent = count;
-            totalLabel.textContent = "Total : " + total + "$";
-        }
+        function updateUI() { countLabel.textContent = count; totalLabel.textContent = "Total : " + total + "$"; }
 
-        // BOUTON WHATSAPP FINAL
         document.getElementById('whatsapp-btn').addEventListener('click', () => {
-            const clientName = document.getElementById('name').value;
-            const clientPhone = document.getElementById('phone').value;
-            const clientEmail = document.getElementById('email').value;
-            const clientAddress = document.getElementById('address').value;
-
-            if (count === 0) {
-                Toastify({ text: "Votre panier est vide !", style: { background: "red" } }).showToast();
+            const name = document.getElementById('name').value;
+            const phone = document.getElementById('phone').value;
+            const email = document.getElementById('email').value;
+            const address = document.getElementById('address').value;
+            if (count === 0 || !name || !phone || !email || !address) {
+                Toastify({ text: "Vérifie tes infos et ton panier !", style: { background: "orange", color: "black" } }).showToast();
                 return;
             }
-            if (!clientName || !clientPhone || !clientEmail || !clientAddress) {
-                Toastify({ text: "Merci de remplir tous les champs !", style: { background: "orange", color: "black" } }).showToast();
-                return;
-            }
-
-            const monNumero = "243995452975";
-            const listeArticles = itemsOrdered.join(", ");
-
-            const texte = `*NOUVELLE COMMANDE CHIDA-SHOP*%0A%0A` +
-                          `👤 *Client :* ${clientName}%0A` +
-                          `📞 *Tél :* ${clientPhone}%0A` +
-                          `📧 *Email :* ${clientEmail}%0A` +
-                          `📍 *Adresse :* ${clientAddress}%0A%0A` +
-                          `📦 *Articles :* ${listeArticles}%0A` +
-                          `💰 *TOTAL À PAYER : ${total}$*%0A%0A` +
-                          `*Je souhaite payer par M-Pesa.*`;
-
-            window.open(`https://wa.me/${monNumero}?text=${texte}`, '_blank');
+            const texte = `*NOUVELLE COMMANDE*%0A👤 *Client :* ${name}%0A📞 *Tél :* ${phone}%0A📧 *Email :* ${email}%0A📍 *Adresse :* ${address}%0A📦 *Articles :* ${itemsOrdered.join(", ")}%0A💰 *TOTAL : ${total}$*`;
+            window.open(`https://wa.me/243995452975?text=${texte}`, '_blank');
         });
     </script>
 </body>
