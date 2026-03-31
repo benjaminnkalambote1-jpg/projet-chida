@@ -53,7 +53,7 @@
         .product-slider::-webkit-scrollbar { display: none; }
 
         .product { 
-            flex: 0 0 200px; /* Un peu plus compact pour le double slider */
+            flex: 0 0 200px; 
             scroll-snap-align: start;
             background-color: #222; 
             border-radius: 15px; 
@@ -90,7 +90,7 @@
         }
 
         #whatsapp-btn {
-            background-color: #25D366;
+            background-color: #e60000; /* Changé en rouge pour M-Pesa */
             color: white;
             border: none;
             padding: 15px;
@@ -147,140 +147,17 @@
             <button class="btn-add">Ajouter</button>
             <button class="btn-remove">Retirer</button>
         </div>
-
-          <div class="product" data-price="60" data-name="Casquette Bleue">
-            <img src="casquette3.jpeg" alt="Bleue">
-            <h3>Bleue Royal</h3>
-            <div class="price-tag">60$</div>
-            <button class="btn-add">Ajouter</button>
-            <button class="btn-remove">Retirer</button>
         </div>
-
-        <div class="product" data-price="55" data-name="Casquette Verte">
-            <img src="casquette2.jpeg" alt="Verte">
-            <h3>Verte Urban</h3>
-            <div class="price-tag">55$</div>
-            <button class="btn-add">Ajouter</button>
-            <button class="btn-remove">Retirer</button>
-        </div>
-
-        
-        <div class="product" data-price="55" data-name="Casquette Verte">
-            <img src="casquette2.jpeg" alt="Verte">
-            <h3>Verte Urban</h3>
-            <div class="price-tag">55$</div>
-            <button class="btn-add">Ajouter</button>
-            <button class="btn-remove">Retirer</button>
-        </div>
-
-          <div class="product" data-price="60" data-name="Casquette Bleue">
-            <img src="casquette3.jpeg" alt="Bleue">
-            <h3>Bleue Royal</h3>
-            <div class="price-tag">60$</div>
-            <button class="btn-add">Ajouter</button>
-            <button class="btn-remove">Retirer</button>
-        </div>
-
-        <div class="product" data-price="55" data-name="Casquette Verte">
-            <img src="casquette2.jpeg" alt="Verte">
-            <h3>Verte Urban</h3>
-            <div class="price-tag">55$</div>
-            <button class="btn-add">Ajouter</button>
-            <button class="btn-remove">Retirer</button>
-        </div>
-
-
-
-
-    </div>
-
-
-
-
-    <div class="section-title">💎 Best-Sellers</div>
-    <div class="product-slider">
-        <div class="product" data-price="45" data-name="Casquette Noire">
-            <img src="casquette4.jpeg" alt="Noire">
-            <h3>Black Classic</h3>
-            <div class="price-tag">45$</div>
-            <button class="btn-add">Ajouter</button>
-            <button class="btn-remove">Retirer</button>
-        </div>
-
-        <div class="product" data-price="70" data-name="Edition Limitée">
-            <img src="casquette3.jpeg" alt="Edition Or">
-            <h3>Edition Or</h3>
-            <div class="price-tag">70$</div>
-            <button class="btn-add">Ajouter</button>
-            <button class="btn-remove">Retirer</button>
-        </div>
-
-        <div class="product" data-price="50" data-name="Casquette Blanche">
-            <img src="casquette2.jpeg" alt="Blanche">
-            <h3>Pure White</h3>
-            <div class="price-tag">50$</div>
-            <button class="btn-add">Ajouter</button>
-            <button class="btn-remove">Retirer</button>
-        </div>
-
-
-        <div class="product" data-price="70" data-name="Edition Limitée">
-            <img src="casquette3.jpeg" alt="Edition Or">
-            <h3>Edition Or</h3>
-            <div class="price-tag">70$</div>
-            <button class="btn-add">Ajouter</button>
-            <button class="btn-remove">Retirer</button>
-        </div>
-
-        <div class="product" data-price="50" data-name="Casquette Blanche">
-            <img src="casquette2.jpeg" alt="Blanche">
-            <h3>Pure White</h3>
-            <div class="price-tag">50$</div>
-            <button class="btn-add">Ajouter</button>
-            <button class="btn-remove">Retirer</button>
-        </div>
-
-        
-        <div class="product" data-price="50" data-name="Casquette Blanche">
-            <img src="casquette2.jpeg" alt="Blanche">
-            <h3>Pure White</h3>
-            <div class="price-tag">50$</div>
-            <button class="btn-add">Ajouter</button>
-            <button class="btn-remove">Retirer</button>
-        </div>
-
-
-        <div class="product" data-price="70" data-name="Edition Limitée">
-            <img src="casquette3.jpeg" alt="Edition Or">
-            <h3>Edition Or</h3>
-            <div class="price-tag">70$</div>
-            <button class="btn-add">Ajouter</button>
-            <button class="btn-remove">Retirer</button>
-        </div>
-
-        <div class="product" data-price="50" data-name="Casquette Blanche">
-            <img src="casquette2.jpeg" alt="Blanche">
-            <h3>Pure White</h3>
-            <div class="price-tag">50$</div>
-            <button class="btn-add">Ajouter</button>
-            <button class="btn-remove">Retirer</button>
-        </div>
-
-
-
-
-
-    </div>
 
     <section class="order-form">
-        <h3>📍 Livraison & Contact</h3>
+        <h3>📍 Livraison & Paiement</h3>
         <input type="text" id="name" placeholder="Nom Complet" required>
-        <input type="tel" id="phone" placeholder="N° WhatsApp" required>
+        <input type="tel" id="phone" placeholder="N° M-Pesa (ex: 243...)" required>
         <input type="email" id="email" placeholder="Email" required>
         <input type="text" id="address" placeholder="Adresse complète" required>
         
         <button id="whatsapp-btn">
-            🟢 Commander via WhatsApp
+            💳 PAYER VIA M-PESA
         </button>
     </section>
 
@@ -293,7 +170,6 @@
         const countLabel = document.getElementById('item-count');
         const totalLabel = document.getElementById('total-display');
 
-        // La logique fonctionne pour tous les boutons des deux rangées
         document.querySelectorAll('.btn-add').forEach(btn => {
             btn.addEventListener('click', () => {
                 const parent = btn.parentElement;
@@ -325,17 +201,38 @@
 
         function updateUI() { countLabel.textContent = count; totalLabel.textContent = "Total : " + total + "$"; }
 
-        document.getElementById('whatsapp-btn').addEventListener('click', () => {
+        // --- SEULE MODIFICATION : APPEL VERCEL ---
+        document.getElementById('whatsapp-btn').addEventListener('click', async () => {
             const name = document.getElementById('name').value;
             const phone = document.getElementById('phone').value;
             const email = document.getElementById('email').value;
             const address = document.getElementById('address').value;
+
             if (count === 0 || !name || !phone || !email || !address) {
                 Toastify({ text: "Vérifie tes infos et ton panier !", style: { background: "orange", color: "black" } }).showToast();
                 return;
             }
-            const texte = `*NOUVELLE COMMANDE*%0A👤 *Client :* ${name}%0A📞 *Tél :* ${phone}%0A📧 *Email :* ${email}%0A📍 *Adresse :* ${address}%0A📦 *Articles :* ${itemsOrdered.join(", ")}%0A💰 *TOTAL : ${total}$*`;
-            window.open(`https://wa.me/243995452975?text=${texte}`, '_blank');
+
+            try {
+                const response = await fetch("https://boutique-pay.vercel.app/api/pay", {
+                    method: "POST",
+                    body: JSON.stringify({
+                        amount: total,
+                        phone: phone,
+                        email: email
+                    })
+                });
+
+                const result = await response.json();
+
+                if (result.status === "ACCEPTED" || result.status === "SUBMITTED") {
+                    alert("🚀 Succès ! Valide le paiement sur ton téléphone.");
+                } else {
+                    alert("Erreur : " + (result.message || "Paiement refusé"));
+                }
+            } catch (err) {
+                alert("Impossible de joindre le serveur de paiement.");
+            }
         });
     </script>
 </body>
