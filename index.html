@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chida-shop | Boutique de Luxe</title>
+    <title>Chida-shop | Catalogue Luxe</title>
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
     
     <style>
@@ -30,21 +30,31 @@
         .cart-info { text-align: right; line-height: 1.2; }
         #total-display { color: gold; font-weight: bold; font-size: 1rem; }
 
-        /* === LE SLIDER HORIZONTAL (DÉFILEMENT GAUCHE/DROITE) === */
-        .product-slider {
-            display: flex;
-            overflow-x: auto; /* Active le défilement horizontal */
-            scroll-snap-type: x mandatory; /* Aligne proprement les produits */
-            gap: 15px;
-            padding: 20px;
-            scrollbar-width: none; /* Cache la barre de défilement sur Firefox */
+        /* Titres des sections */
+        .section-title {
+            padding: 15px 20px 5px;
+            font-size: 1.1rem;
+            color: #000;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
-        .product-slider::-webkit-scrollbar { display: none; } /* Cache la barre sur Chrome/Safari */
+        /* === SLIDER HORIZONTAL === */
+        .product-slider {
+            display: flex;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            gap: 15px;
+            padding: 10px 20px 20px;
+            scrollbar-width: none;
+        }
+
+        .product-slider::-webkit-scrollbar { display: none; }
 
         .product { 
-            flex: 0 0 220px; /* Largeur fixe de chaque casquette */
-            scroll-snap-align: center;
+            flex: 0 0 200px; /* Un peu plus compact pour le double slider */
+            scroll-snap-align: start;
             background-color: #222; 
             border-radius: 15px; 
             padding: 15px; 
@@ -52,7 +62,7 @@
             box-shadow: 0 4px 15px rgba(0,0,0,0.5);
         }
 
-        .product img { width: 100%; border-radius: 10px; margin-bottom: 10px; height: 180px; object-fit: cover; }
+        .product img { width: 100%; border-radius: 10px; margin-bottom: 10px; height: 160px; object-fit: cover; }
         .price-tag { color: gold; font-weight: bold; font-size: 1.1rem; margin: 5px 0; }
 
         .btn-add { background-color: gold; color: #000; border: none; padding: 10px; width: 100%; border-radius: 8px; font-weight: bold; cursor: pointer; }
@@ -63,11 +73,11 @@
             background-color: #111;
             padding: 20px;
             max-width: 450px;
-            margin: 10px auto 30px;
+            margin: 20px auto 30px;
             border-radius: 15px;
             border: 2px solid gold;
         }
-        .order-form h3 { color: gold; text-align: center; margin-top: 0; font-size: 1rem; }
+        .order-form h3 { color: gold; text-align: center; margin-top: 0; }
         .order-form input {
             width: 100%;
             padding: 12px;
@@ -112,6 +122,7 @@
         </div>
     </header>
 
+    <div class="section-title">🔥 Nouveautés</div>
     <div class="product-slider">
         <div class="product" data-price="50" data-name="Casquette Rouge">
             <img src="casquette4.jpeg" alt="Rouge">
@@ -137,16 +148,15 @@
             <button class="btn-remove">Retirer</button>
         </div>
 
-        <div class="product" data-price="45" data-name="Casquette Noire">
-            <img src="casquette4.jpeg" alt="Noire">
-            <h3>Classic Black</h3>
-            <div class="price-tag">45$</div>
+          <div class="product" data-price="60" data-name="Casquette Bleue">
+            <img src="casquette3.jpeg" alt="Bleue">
+            <h3>Bleue Royal</h3>
+            <div class="price-tag">60$</div>
             <button class="btn-add">Ajouter</button>
             <button class="btn-remove">Retirer</button>
         </div>
 
-        
-         <div class="product" data-price="55" data-name="Casquette Verte">
+        <div class="product" data-price="55" data-name="Casquette Verte">
             <img src="casquette2.jpeg" alt="Verte">
             <h3>Verte Urban</h3>
             <div class="price-tag">55$</div>
@@ -154,10 +164,27 @@
             <button class="btn-remove">Retirer</button>
         </div>
 
-        <div class="product" data-price="45" data-name="Casquette Noire">
-            <img src="casquette4.jpeg" alt="Noire">
-            <h3>Classic Black</h3>
-            <div class="price-tag">45$</div>
+        
+        <div class="product" data-price="55" data-name="Casquette Verte">
+            <img src="casquette2.jpeg" alt="Verte">
+            <h3>Verte Urban</h3>
+            <div class="price-tag">55$</div>
+            <button class="btn-add">Ajouter</button>
+            <button class="btn-remove">Retirer</button>
+        </div>
+
+          <div class="product" data-price="60" data-name="Casquette Bleue">
+            <img src="casquette3.jpeg" alt="Bleue">
+            <h3>Bleue Royal</h3>
+            <div class="price-tag">60$</div>
+            <button class="btn-add">Ajouter</button>
+            <button class="btn-remove">Retirer</button>
+        </div>
+
+        <div class="product" data-price="55" data-name="Casquette Verte">
+            <img src="casquette2.jpeg" alt="Verte">
+            <h3>Verte Urban</h3>
+            <div class="price-tag">55$</div>
             <button class="btn-add">Ajouter</button>
             <button class="btn-remove">Retirer</button>
         </div>
@@ -165,11 +192,79 @@
 
 
 
+    </div>
 
 
 
 
+    <div class="section-title">💎 Best-Sellers</div>
+    <div class="product-slider">
+        <div class="product" data-price="45" data-name="Casquette Noire">
+            <img src="casquette4.jpeg" alt="Noire">
+            <h3>Black Classic</h3>
+            <div class="price-tag">45$</div>
+            <button class="btn-add">Ajouter</button>
+            <button class="btn-remove">Retirer</button>
+        </div>
 
+        <div class="product" data-price="70" data-name="Edition Limitée">
+            <img src="casquette3.jpeg" alt="Edition Or">
+            <h3>Edition Or</h3>
+            <div class="price-tag">70$</div>
+            <button class="btn-add">Ajouter</button>
+            <button class="btn-remove">Retirer</button>
+        </div>
+
+        <div class="product" data-price="50" data-name="Casquette Blanche">
+            <img src="casquette2.jpeg" alt="Blanche">
+            <h3>Pure White</h3>
+            <div class="price-tag">50$</div>
+            <button class="btn-add">Ajouter</button>
+            <button class="btn-remove">Retirer</button>
+        </div>
+
+
+        <div class="product" data-price="70" data-name="Edition Limitée">
+            <img src="casquette3.jpeg" alt="Edition Or">
+            <h3>Edition Or</h3>
+            <div class="price-tag">70$</div>
+            <button class="btn-add">Ajouter</button>
+            <button class="btn-remove">Retirer</button>
+        </div>
+
+        <div class="product" data-price="50" data-name="Casquette Blanche">
+            <img src="casquette2.jpeg" alt="Blanche">
+            <h3>Pure White</h3>
+            <div class="price-tag">50$</div>
+            <button class="btn-add">Ajouter</button>
+            <button class="btn-remove">Retirer</button>
+        </div>
+
+        
+        <div class="product" data-price="50" data-name="Casquette Blanche">
+            <img src="casquette2.jpeg" alt="Blanche">
+            <h3>Pure White</h3>
+            <div class="price-tag">50$</div>
+            <button class="btn-add">Ajouter</button>
+            <button class="btn-remove">Retirer</button>
+        </div>
+
+
+        <div class="product" data-price="70" data-name="Edition Limitée">
+            <img src="casquette3.jpeg" alt="Edition Or">
+            <h3>Edition Or</h3>
+            <div class="price-tag">70$</div>
+            <button class="btn-add">Ajouter</button>
+            <button class="btn-remove">Retirer</button>
+        </div>
+
+        <div class="product" data-price="50" data-name="Casquette Blanche">
+            <img src="casquette2.jpeg" alt="Blanche">
+            <h3>Pure White</h3>
+            <div class="price-tag">50$</div>
+            <button class="btn-add">Ajouter</button>
+            <button class="btn-remove">Retirer</button>
+        </div>
 
 
 
@@ -178,7 +273,7 @@
     </div>
 
     <section class="order-form">
-        <h3>📍 Détails de Livraison</h3>
+        <h3>📍 Livraison & Contact</h3>
         <input type="text" id="name" placeholder="Nom Complet" required>
         <input type="tel" id="phone" placeholder="N° WhatsApp" required>
         <input type="email" id="email" placeholder="Email" required>
@@ -198,6 +293,7 @@
         const countLabel = document.getElementById('item-count');
         const totalLabel = document.getElementById('total-display');
 
+        // La logique fonctionne pour tous les boutons des deux rangées
         document.querySelectorAll('.btn-add').forEach(btn => {
             btn.addEventListener('click', () => {
                 const parent = btn.parentElement;
